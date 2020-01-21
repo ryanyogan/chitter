@@ -23,6 +23,7 @@ defmodule ChitterWeb do
 
       import Plug.Conn
       import ChitterWeb.Gettext
+      import Phoenix.LiveView.Controller
       alias ChitterWeb.Router.Helpers, as: Routes
     end
   end
@@ -41,6 +42,7 @@ defmodule ChitterWeb do
 
       import ChitterWeb.ErrorHelpers
       import ChitterWeb.Gettext
+      import Phoenix.LiveView.Helpers
       alias ChitterWeb.Router.Helpers, as: Routes
     end
   end
@@ -50,6 +52,7 @@ defmodule ChitterWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
