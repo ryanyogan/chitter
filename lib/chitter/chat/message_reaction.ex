@@ -2,10 +2,13 @@ defmodule Chitter.Chat.MessageReaction do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Chitter.Auth.User
+  alias Chitter.Chat.{Emoji, Message}
+
   schema "chat_message_reactions" do
-    field :message_id, :id
-    field :user_id, :id
-    field :emoji_id, :id
+    belongs_to :user, User
+    belongs_to :emoji, Emoji
+    belongs_to :message, Message
 
     timestamps()
   end
@@ -13,7 +16,10 @@ defmodule Chitter.Chat.MessageReaction do
   @doc false
   def changeset(message_reaction, attrs) do
     message_reaction
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:user_id, :emoji_id, :message_id])
+    |> validate_required([:user_id, :emoji_id, :message_id])
+    |> unique_constraint(:emoji_id,
+      name: :chat_message_reactions_user_id_message_id_emoji_id_index
+    )
   end
 end

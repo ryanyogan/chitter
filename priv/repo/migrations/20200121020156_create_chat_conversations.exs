@@ -3,10 +3,9 @@ defmodule Chitter.Repo.Migrations.CreateChatConversations do
 
   def change do
     create table(:chat_conversations) do
-      add :title, :string
+      add :title, :string, null: false
 
       timestamps()
     end
-
   end
 end
