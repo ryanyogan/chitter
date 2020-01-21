@@ -5,31 +5,10 @@ defmodule ChitterWeb.ConversationLive do
   use Phoenix.HTML
 
   alias Chitter.{Auth, Chat, Repo}
+  alias ChitterWeb.ConversationView
 
   def render(assigns) do
-    ~L"""
-    <div>
-      <b>User name:</b> <%= @user.nickname %>
-    </div>
-    <div>
-      <b>Conversation title:</b> <%= @conversation.title %>
-    </div>
-    <div>
-      <%= f = form_for :message, "#", phx_submit: "send_message" %>
-        <%= label f, :content %>
-        <%= text_input f, :content %>
-        <%= submit "Send" %>
-      </form>
-    </div>
-    <div>
-      <b>Messages</b>
-      <%= for message <- @messages do %>
-        <div>
-          <b><%= message.user.nickname %></b>: <%= message.content %>
-        </div>
-      <% end %>
-    </div>
-    """
+    ConversationView.render("show.html", assigns)
   end
 
   def mount(_assigns, socket) do
