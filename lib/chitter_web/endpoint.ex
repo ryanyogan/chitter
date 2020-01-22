@@ -35,5 +35,9 @@ defmodule ChitterWeb.Endpoint do
     key: "_chitter_key",
     signing_salt: "z647Kr25"
 
+  plug Pow.Plug.Session,
+    otp_app: :chitter,
+    cache_store_backend: Pow.Store.Backend.MnesiaCache
+
   plug ChitterWeb.Router
 end

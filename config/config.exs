@@ -12,6 +12,11 @@ config :chitter, ChitterWeb.Endpoint,
     signing_salt: "5mC30K5BSc6KHCkZemnj09B/fuV7VF25"
   ]
 
+config :chitter, :pow,
+  user: Chitter.Auth.User,
+  repo: Chitter.Repo,
+  web_module: ChitterWeb
+
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
