@@ -38,6 +38,7 @@ defmodule ChitterWeb.Router do
     resources "/conversations", ConversationController
 
     live "/conversations/:conversation_id/users/:user_id",
-         ConversationLive
+         ConversationLive,
+         as: :conversation
   end
 end
