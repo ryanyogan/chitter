@@ -6,6 +6,7 @@ defmodule ChitterWeb.AssignUser do
 
   def init(opts), do: opts
 
+  @spec call(Plug.Conn.t(), any) :: Plug.Conn.t()
   def call(conn, params) do
     case Pow.Plug.current_user(conn) do
       %User{} = user ->
